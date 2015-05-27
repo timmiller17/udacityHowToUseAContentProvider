@@ -46,9 +46,21 @@ public class MainActivity extends ActionBarActivity {
 
         // -- YOUR CODE BELOW HERE -- //
 
+        String word = cursor.getColumnName(cursor.getColumnIndex(Words.WORD));
+        String freq = cursor.getColumnName(cursor.getColumnIndex(Words.FREQUENCY));
+        String[] columnHeadings = {word, freq};
+        int[] textViews = {android.R.id.text1, android.R.id.text2};
+
         // Set the Adapter to fill the standard two_line_list_item layout with data from the Cursor.
-        SimpleCursorAdapter adapter = null;
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.two_line_list_item,
+                cursor,
+                columnHeadings,
+                textViews,
+                0
+        );
 
         // Don't forget to attach the adapter to the ListView
+        dictListView.setAdapter(adapter);
     }
 }
